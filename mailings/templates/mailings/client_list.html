@@ -1,0 +1,40 @@
+{% extends 'mailings/base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-header">Контакты:</h4>
+                    <table class="table mt-5">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Имя</th>
+                            <th scope="col">E-mail</th>
+                            <th scope="col">Комментарий</th>
+                        </tr>
+                        </thead>
+                        <tbody class="table-group-divider">
+                        {% for object in object_list %}
+                        <tr>
+                            <th scope="row">{{ object.pk }}</th>
+                            <td>
+                                <a class="nav-link active" href="{% url 'mailings:client_detail' object.pk %}">{{ object.name }}</a>
+                            </td>
+                            <td>{{ object.email }}</td>
+                            <td>{{ object.comment }}</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

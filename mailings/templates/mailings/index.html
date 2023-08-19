@@ -1,0 +1,17 @@
+{% extends 'mailings/base.html' %}
+
+{% block content %}
+
+
+<div class="container ">
+    <div class="row mt-5">
+        <h1>Сервис простых рассылок</h1>
+        <p class="lead">Создавайте рассылки за считанные минуты. Мы работаем без блокировок и отключений. Ваши рассылки в безопасности!</p>
+        <p class="lead mt-5">
+            <a href="{% url 'mailings:mailing_list' %}" class="btn btn-lg btn-light fw-bold border-white bg-whitee">Создать рассылку</a>
+        </p>
+    </div>
+</div>
+
+
+{% endblock %}

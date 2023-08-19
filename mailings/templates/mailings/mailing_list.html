@@ -1,0 +1,44 @@
+{% extends 'mailings/base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 mb-3 mb-sm-0">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Создать рассылку</h4>
+                    <p class="card-text">Быстрый и удобный способ создать e-mail рассылку</p>
+                    <a href="{% url 'mailings:mailing_create' %}" class="btn btn-outline-warning btn-lg">+</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Добавить клиента</h4>
+                    <p class="card-text">Простой способ добавлять и управлять контактами</p>
+                    <a href="{% url 'mailings:client_create' %}" class="btn btn-outline-success btn-lg">+</a>
+                    <a href="{% url 'mailings:client_list' %}" class="btn btn-outline-success btn-lg">Все</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-header">Последние рассылки</h4>
+                    {% for object in object_list %}
+                    <div class="list-group list-group-flush">
+                        <a href="{% url 'mailings:mailing_detail' object.slug %}" class="list-group-item list-group-item-action">{{ object.topic }}</a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
