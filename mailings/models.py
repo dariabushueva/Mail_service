@@ -6,15 +6,24 @@ NULLABLE = {'blank': True, 'null': True}
 class Mailing(models.Model):
     """ Модель рассылки """
 
+    CREATED = 'created'
+    LAUNCHED = 'launched'
+    COMPLETED = 'completed'
+
     STATUS_CHOICES = [
-        ('created', 'Создана'),
-        ('launched', 'Запущена'),
-        ('completed', 'Завершена'),
+        (CREATED, 'Создана'),
+        (LAUNCHED, 'Запущена'),
+        (COMPLETED, 'Завершена'),
     ]
+
+    DAILY = 'daily'
+    WEEKLY = 'weekly'
+    MONTHLY = 'monthly'
+
     FREQUENCY_CHOICES = [
-        ('daily', 'Раз в день'),
-        ('weekly', 'Раз в неделю'),
-        ('monthly', 'Раз в месяц')
+        (DAILY, 'Раз в день'),
+        (WEEKLY, 'Раз в неделю'),
+        (MONTHLY, 'Раз в месяц')
     ]
 
     topic = models.CharField(max_length=100, verbose_name='Тема письма')
@@ -55,13 +64,13 @@ class MailingLogs(models.Model):
 
     last_attempt = models.DateTimeField(auto_now_add=True, verbose_name='Дата и время последней попытки')
     attempt_status = models.CharField(max_length=50, verbose_name='Статус попытки')
-    mail_server_response = models.TextField(**NULLABLE, verbose_name='Ответ почтового сервера')
+    mail_server_response = models.BooleanField(verbose_name='Ответ почтового сервера')
 
     mailing = models.ForeignKey(Mailing, on_delete=models.CASCADE, verbose_name='Рассылка')
-    client = models.ManyToManyField(Client, blank=True, verbose_name='Клиент')
+    client = models.ForeignKey(Client, on_delete=models.CASCADE, verbose_name='Клиент')
 
     def __str__(self):
-        return f'{self.mail_server_response} ({self.attempt_status} - {self.last_attempt})'
+        return f'{self.mailing} - {self.client} ({self.attempt_status} - {self.mail_server_response})'
 
     class Meta:
         verbose_name = 'Лог'

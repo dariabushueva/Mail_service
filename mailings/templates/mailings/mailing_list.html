@@ -10,6 +10,7 @@
                     <h4 class="card-title">Создать рассылку</h4>
                     <p class="card-text">Быстрый и удобный способ создать e-mail рассылку</p>
                     <a href="{% url 'mailings:mailing_create' %}" class="btn btn-outline-warning btn-lg">+</a>
+                    <a href="{% url 'mailings:logs_list' %}" class="btn btn-outline-warning btn-lg">Статистика</a>
                 </div>
             </div>
         </div>
@@ -29,15 +30,33 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-header">Последние рассылки</h4>
-                    {% for object in object_list %}
-                    <div class="list-group list-group-flush">
-                        <a href="{% url 'mailings:mailing_detail' object.slug %}" class="list-group-item list-group-item-action">{{ object.topic }}</a>
-                    </div>
-                    {% endfor %}
+                    <table class="table mt-5">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Тема</th>
+                            <th scope="col">Статус</th>
+                            <th scope="col">Время начала</th>
+                        </tr>
+                        </thead>
+                        <tbody class="table-group-divider">
+                        {% for object in object_list %}
+                        <tr>
+                            <th scope="row">{{ object.pk }}</th>
+                            <td>
+                                <a class="nav-link active" href="{% url 'mailings:mailing_detail' object.slug %}">{{ object.topic }}</a>
+                            </td>
+                            <td>{{ object.status }}</td>
+                            <td>{{ object.start_time }}</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
+
 
 </div>
 
