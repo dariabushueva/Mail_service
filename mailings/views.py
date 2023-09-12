@@ -2,8 +2,8 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
+from mailings.forms import MailingForm, ClientForm
 from mailings.models import Mailing, Client, MailingLogs
-from mailings.services import send_mailings
 
 
 def index(request):
@@ -24,18 +24,13 @@ class MailingDetailView(DetailView):
 
 class MailingCreateView(CreateView):
     model = Mailing
-    fields = ('topic', 'body', 'slug', 'status', 'start_time', 'frequency', 'client',)
+    form_class = MailingForm
     success_url = reverse_lazy('mailings:mailing_list')
-
-  #  def form_valid(self, form):
-  #      obj = form.save()
-  #      send_mailings(obj)
-  #      return super().form_valid(form)
 
 
 class MailingUpdateView(UpdateView):
     model = Mailing
-    fields = ('topic', 'body', 'slug', 'status', 'start_time', 'frequency', 'client',)
+    form_class = MailingForm
     success_url = reverse_lazy('mailings:mailing_list')
 
 
@@ -46,8 +41,8 @@ class MailingDeleteView(DeleteView):
 
 class ClientCreateView(CreateView):
     model = Client
-    fields = ('email', 'name', 'comment',)
-    success_url = reverse_lazy('mailings:mailing_list')
+    form_class = ClientForm
+    success_url = reverse_lazy('mailings:client_list')
 
 
 class ClientListView(ListView):
@@ -60,7 +55,7 @@ class ClientDetailView(DetailView):
 
 class ClientUpdateView(UpdateView):
     model = Client
-    fields = ('email', 'name', 'comment')
+    form_class = ClientForm
     success_url = reverse_lazy('mailings:client_list')
 
 
