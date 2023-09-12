@@ -9,6 +9,6 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         scheduler = BlockingScheduler()
-        scheduler.add_job(check_sending, 'interval', seconds=5)
+        scheduler.add_job(check_sending, 'interval', seconds=30)
         scheduler.start()
 

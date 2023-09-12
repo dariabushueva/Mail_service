@@ -4,7 +4,7 @@ from django.core.mail import send_mail
 from datetime import datetime
 
 from config import settings
-from mailings.models import Mailing, MailingLogs, Client
+from mailings.models import Mailing, MailingLogs
 
 
 def send_mailings(mailing_item: Mailing):
@@ -38,30 +38,29 @@ def send_mailings(mailing_item: Mailing):
             client=client,
         )
 
-#ms = Mailing.objects.filter(status=Mailing.LAUNCHED)
-#mf = Mailing.objects.filter(frequency=Mailing.WEEKLY)
-
 
 def check_sending():
     now = datetime.now()
     for ms in Mailing.objects.filter(status=Mailing.LAUNCHED):
-        for mc in ms.mailingclient_set.all():
-            ml = MailingLogs.objects.filter(client=mc.client, mailing=ms)
+        for mc in ms.client.all():
+            ml = MailingLogs.objects.filter(client=mc, mailing=ms)
             if ml.exists():
-                last_try_date = ml.order_by('-last_attempt').first()
-                if ms.frequency == Mailing.frequency.DAILY:
+                last_try = ml.order_by('-last_attempt').first()
+                last_try_date = last_try.last_attempt.replace(tzinfo=None)
+                if ms.DAILY:
                     if (now - last_try_date).days >= 1:
                         send_mailings(ms)
-                if ms.frequency == Mailing.frequency.WEEKLY:
+                        print(f'отправлено очередное ежедневное письмо {ms.topic}')
+                if ms.WEEKLY:
                     if (now - last_try_date).days >= 7:
                         send_mailings(ms)
-                if ms.frequency == Mailing.frequency.MONTHLY:
+                        print(f'отправлено очередное еженедельное письмо {ms.topic}')
+                if ms.MONTHLY:
                     if (now - last_try_date).days >= 30:
                         send_mailings(ms)
+                        print(f'отправлено очередное ежемесячное письмо {ms.topic}')
             else:
-                send_mailings(ms)
-                print('sent it')
-
-
-
+                if now >= ms.start_time.replace(tzinfo=None):
+                    send_mailings(ms)
+                    print(f'отправлено новое письмо рассылки: {ms.topic}')
 
