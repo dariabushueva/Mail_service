@@ -5,15 +5,16 @@ from mailings.models import Mailing, Client,  MailingLogs
 
 @admin.register(Mailing)
 class MailingAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'topic', 'status', 'start_time', 'frequency',)
-    list_filter = ('status',)
+    list_display = ('pk', 'topic', 'status', 'owner', 'start_time', 'frequency',)
+    list_display_links = ('pk', 'topic',)
+    list_filter = ('status', 'owner',)
     search_fields = ('topic', 'body',)
     prepopulated_fields = {'slug': ('topic',)}
 
 
 @admin.register(Client)
 class ClientAdmin(admin.ModelAdmin):
-    list_display = ('email', 'name',)
+    list_display = ('email', 'name', 'owner',)
 
 
 @admin.register(MailingLogs)

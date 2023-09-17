@@ -4,6 +4,7 @@ from mailings.models import Mailing, Client
 
 
 class StyleFormMixin:
+    """ Виджет для форм """
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -12,14 +13,22 @@ class StyleFormMixin:
 
 
 class MailingForm(StyleFormMixin, forms.ModelForm):
+    """ Форма рассылки """
+
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user', None)
+        super().__init__(*args, **kwargs)
+        if user:
+            self.fields['client'].queryset = Client.objects.filter(owner=user)
 
     class Meta:
         model = Mailing
-        fields = '__all__'
+        exclude = ('owner',)
 
 
 class ClientForm(StyleFormMixin, forms.ModelForm):
+    """ Форма клиента """
 
     class Meta:
         model = Client
-        fields = '__all__'
+        exclude = ('owner',)

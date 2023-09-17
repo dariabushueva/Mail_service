@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 
 NULLABLE = {'blank': True, 'null': True}
@@ -35,6 +36,7 @@ class Mailing(models.Model):
     frequency = models.CharField(max_length=50, verbose_name='Периодичность', default='daily', choices=FREQUENCY_CHOICES)
 
     client = models.ManyToManyField('Client', blank=True, verbose_name='Клиент')
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, **NULLABLE, verbose_name='владелец')
 
     def __str__(self):
         return f'{self.topic} ({self.status} - {self.start_time})'
@@ -45,11 +47,13 @@ class Mailing(models.Model):
 
 
 class Client(models.Model):
-    """ Клиент сервиса """
+    """ Модель клиента сервиса """
 
     email = models.EmailField(verbose_name='E-mail')
     name = models.CharField(max_length=150, verbose_name='Имя')
     comment = models.TextField(verbose_name='Комментарий', **NULLABLE)
+
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, **NULLABLE, verbose_name='владелец')
 
     def __str__(self):
         return f'{self.email} ({self.comment})'
@@ -60,7 +64,7 @@ class Client(models.Model):
 
 
 class MailingLogs(models.Model):
-    """ Логи рассылки """
+    """ Модель логов рассылки """
 
     last_attempt = models.DateTimeField(auto_now_add=True, verbose_name='Дата и время последней попытки')
     attempt_status = models.CharField(max_length=50, verbose_name='Статус попытки')

@@ -8,8 +8,12 @@
         <h1>{{ object.topic }}</h1>
         <p class="lead">{{ object.body }}</p>
         <div class="btn-group mt-5" role="group" aria-label="Basic outlined example">
+            {% if perms.mailings.change_mailing or object.owner == user %}
             <a href="{% url 'mailings:mailing_edit' object.slug %}" type="button" class="btn btn-outline-warning">Редактировать</a>
+            {% endif %}
+            {% if perms.mailings.delete_mailing or object.owner == user %}
             <a href="{% url 'mailings:mailing_delete' object.slug %}" type="button" class="btn btn-outline-danger">Удалить</a>
+            {% endif %}
         </div>
     </div>
 </div>
