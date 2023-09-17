@@ -1,16 +1,35 @@
+import random
+
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
 from django.http import Http404
-from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
+from blog.models import Blog
 from mailings.forms import MailingForm, ClientForm
 from mailings.models import Mailing, Client, MailingLogs
 
 
-def index(request):
-    """ Главная страница """
-    return render(request, 'mailings/index.html')
+class Index(ListView):
+    model = Blog
+    template_name = 'mailings/index.html'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        queryset = Blog.objects.filter(is_published=True)
+        all_blogs = list(queryset)
+        random_blogs = random.sample(all_blogs, 3)
+        return random_blogs
+
+    def get_context_data(self, *args, **kwargs):
+        context_data = super().get_context_data(*args, **kwargs)
+        all_mailings = len(Mailing.objects.all())
+        context_data['all_mailings'] = all_mailings
+        active_mailings = len(Mailing.objects.filter(status=Mailing.LAUNCHED))
+        context_data['active_mailings'] = active_mailings
+        all_clients = len(Client.objects.all())
+        context_data['all_clients'] = all_clients
+        return context_data
 
 
 class MailingListView(LoginRequiredMixin, ListView):
