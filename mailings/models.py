@@ -44,6 +44,12 @@ class Mailing(models.Model):
     class Meta:
         verbose_name = 'Рассылка'
         verbose_name_plural = 'Рассылки'
+        permissions = [
+            (
+                'set_status',
+                'Can change status'
+            )
+        ]
 
 
 class Client(models.Model):
