@@ -5,7 +5,8 @@ from users.models import User
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
-    list_display = ('email', 'phone', 'first_name', 'last_name', 'is_active')
+    list_display = ('pk', 'email', 'phone', 'first_name', 'last_name', 'is_active')
+    list_display_links = ('pk', 'email',)
 
     def get_readonly_fields(self, request, obj=None):
         if request.user.has_perm('mailings.set_status') and not request.user.is_superuser:

@@ -1,6 +1,6 @@
 import random
 
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import Http404
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -11,6 +11,7 @@ from mailings.models import Mailing, Client, MailingLogs
 
 
 class Index(ListView):
+    """ Главная страница """
     model = Blog
     template_name = 'mailings/index.html'
 

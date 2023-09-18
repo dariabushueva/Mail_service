@@ -8,7 +8,7 @@ class Blog(models.Model):
     body = models.TextField(verbose_name='содержимое')
     image_preview = models.ImageField(upload_to='blog_media/', verbose_name='изображение', **NULLABLE)
     creation_date = models.DateField(auto_now_add=True, verbose_name='дата создания')
-    is_published = models.BooleanField(default=True, verbose_name='опубликовано')
+    is_published = models.BooleanField(default=False, verbose_name='опубликовано')
     count_views = models.PositiveIntegerField(default=0, verbose_name='просмотры')
     slug = models.CharField(max_length=150, verbose_name='slug')
 

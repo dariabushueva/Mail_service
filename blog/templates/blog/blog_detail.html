@@ -11,9 +11,13 @@
             <p class="card-text">{{ object.creation_date }}</p>
             <p class="card-text">{{ object.body }}</p>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                {% if perms.blog.change_blog %}
                 <a href="{% url 'blog:blog_edit' object.slug %}" type="button"
                    class="btn btn-outline-info">Edit</a>
+                {% endif %}
+                {% if perms.blog.delete_blog %}
                 <a href="{% url 'blog:blog_delete' object.slug %}" type="button" class="btn btn-outline-info">Delete</a>
+                {% endif %}
             </div>
             <div class="card-footer mt-3">Просмотры: {{ object.count_views }}</div>
         </div>
