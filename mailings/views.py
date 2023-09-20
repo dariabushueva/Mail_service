@@ -1,7 +1,9 @@
 import random
 
+from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import Http404
+from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
@@ -81,7 +83,7 @@ class MailingUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_object(self, queryset=None):
         self.object = super().get_object(queryset)
-        if self.object.owner != self.request.user and not self.request.user.is_staff:
+        if self.object.owner != self.request.user and not self.request.user.is_superuser:
             raise Http404
         return self.object
 
@@ -157,3 +159,10 @@ class MailingLogsListView(LoginRequiredMixin, ListView):
     """ Логи рассылки """
     model = MailingLogs
 
+
+@permission_required("mailings.set_status")
+def change_mailing_status(request, slug):
+    mailing = get_object_or_404(Mailing, slug=slug)
+    mailing.status = 'completed'
+    mailing.save()
+    return redirect('mailings:mailing_list')

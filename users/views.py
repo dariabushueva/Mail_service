@@ -2,14 +2,15 @@ import string
 import random
 
 from django.conf import settings
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView as BaseLoginView
 from django.contrib.auth.views import LogoutView as BaseLogoutView
 from django.core.mail import send_mail
+from django.db.models import Q
 from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse_lazy, reverse
-from django.views.generic import CreateView, UpdateView
+from django.views.generic import CreateView, UpdateView, ListView
 
 from users.forms import UserRegisterForm, UserForm, LoginForm
 from users.models import User
@@ -49,6 +50,15 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
         return self.request.user
 
 
+class UserList(ListView):
+    model = User
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        queryset = queryset.exclude(Q(is_staff=True) | Q(is_superuser=True))
+        return queryset
+
+
 def verify_email(request, key):
     user = get_object_or_404(User, verification_key=key)
     user.is_active = True
@@ -70,5 +80,13 @@ def generate_and_send_password(request):
     request.user.save()
 
     return redirect(reverse('users:login'))
+
+
+@permission_required("users.set_blocked_status")
+def blocked_user(request, pk):
+    user = get_object_or_404(User, pk=pk)
+    user.is_active = False
+    user.save()
+    return redirect('users:user_list')
 
 

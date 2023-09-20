@@ -183,6 +183,9 @@
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="{% url 'mailings:mailing_list' %}">Рассылки</a></li>
                         <li><a class="dropdown-item" href="{% url 'blog:blog_list' %}">Блог</a></li>
+                        {% if perms.users.set_blocked_status %}
+                        <li><a class="dropdown-item" href="{% url 'users:user_list' %}">Пользователи</a></li>
+                        {% endif %}
                     </ul>
                 </div>
                 {% if user.is_authenticated %}

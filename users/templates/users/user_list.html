@@ -1,0 +1,44 @@
+{% extends 'mailings/base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-header">Контакты:</h4>
+                    <table class="table mt-5">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">E-mail</th>
+                            <th scope="col">Статус</th>
+                            <th scope="col">Заблокировать</th>
+                        </tr>
+                        </thead>
+                        <tbody class="table-group-divider">
+                        {% for object in object_list %}
+                        <tr>
+                            <th scope="row">{{ object.pk }}</th>
+                            <td>{{ object.email }}</td>
+                            <td>
+                                {% if object.is_active %}
+                                Активный
+                                {% else %}
+                                Не активный
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a class="btn btn-outline-light btn-sm" href="{% url 'users:blocked_user' object.pk %}">X</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+</div>

@@ -10,11 +10,6 @@ class MailingAdmin(admin.ModelAdmin):
     list_filter = ('status', 'owner',)
     search_fields = ('topic', 'body',)
 
-    def get_readonly_fields(self, request, obj=None):
-        if request.user.has_perm('mailings.set_status') and not request.user.is_superuser:
-            return ['topic', 'body', 'slug', 'start_time', 'frequency', 'client', 'owner']
-        return self.readonly_fields
-
 
 @admin.register(Client)
 class ClientAdmin(admin.ModelAdmin):

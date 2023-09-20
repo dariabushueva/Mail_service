@@ -27,7 +27,7 @@ class User(AbstractUser):
         verbose_name_plural = 'Пользователи'
         permissions = [
             (
-                'set_active_status',
+                'set_blocked_status',
                 'Can change status'
             )
         ]
