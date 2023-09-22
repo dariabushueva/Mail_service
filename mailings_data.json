@@ -1,0 +1,186 @@
+[
+  {
+    "model": "mailings.mailing",
+    "pk": 3,
+    "fields": {
+      "topic": "тестовая рассылка  2 - Б",
+      "body": "тестовая рассылка  2 - Б",
+      "slug": "test-2",
+      "status": "launched",
+      "start_time": "2023-09-14T18:15:00Z",
+      "frequency": "daily",
+      "owner": null,
+      "client": [
+        1
+      ]
+    }
+  },
+  {
+    "model": "mailings.mailing",
+    "pk": 4,
+    "fields": {
+      "topic": "Рассылка от атлант отредактированная",
+      "body": "Рассылка от атлантй\r\n\r\nотредактированная",
+      "slug": "test-atlant",
+      "status": "completed",
+      "start_time": "2023-09-16T22:35:00Z",
+      "frequency": "weekly",
+      "owner": 6,
+      "client": [
+        2
+      ]
+    }
+  },
+  {
+    "model": "mailings.mailing",
+    "pk": 5,
+    "fields": {
+      "topic": "рассылка от wcxto@yandex.ru Ад",
+      "body": "рассылка от wcxto@yandex.ru\r\nтак админ тоже может редактировать",
+      "slug": "test-wcxto",
+      "status": "completed",
+      "start_time": "2023-09-16T18:15:00Z",
+      "frequency": "monthly",
+      "owner": 7,
+      "client": []
+    }
+  },
+  {
+    "model": "mailings.mailing",
+    "pk": 6,
+    "fields": {
+      "topic": "рассылка от bushueva84@yandex.ru",
+      "body": "рассылка от bushueva84@yandex.ru\r\nрассылка от bushueva84@yandex.ru\r\nрассылка от bushueva84@yandex.ru\r\nрассылка от bushueva84@yandex.ru\r\nрассылка от bushueva84@yandex.ru",
+      "slug": "test-bushueva",
+      "status": "created",
+      "start_time": "2023-09-20T18:15:00Z",
+      "frequency": "weekly",
+      "owner": 5,
+      "client": [
+        1
+      ]
+    }
+  },
+  {
+    "model": "mailings.mailing",
+    "pk": 7,
+    "fields": {
+      "topic": "Рассылка тест 5",
+      "body": "Рассылка тест 5\r\nРассылка тест 5\r\nРассылка тест 5\r\nРассылка тест 5\r\nРассылка тест 5",
+      "slug": "test-5",
+      "status": "launched",
+      "start_time": "2023-09-21T21:15:00Z",
+      "frequency": "daily",
+      "owner": 6,
+      "client": [
+        2
+      ]
+    }
+  },
+  {
+    "model": "mailings.mailing",
+    "pk": 8,
+    "fields": {
+      "topic": "тестовая рассылка 6",
+      "body": "тестовая рассылка 6\r\nтестовая рассылка 6\r\nтестовая рассылка 6\r\nтестовая рассылка 6\r\nтестовая рассылка 6\r\nтестовая рассылка 6",
+      "slug": "test-6",
+      "status": "launched",
+      "start_time": "2023-09-21T22:15:00Z",
+      "frequency": "daily",
+      "owner": 7,
+      "client": [
+        3
+      ]
+    }
+  },
+  {
+    "model": "mailings.mailing",
+    "pk": 9,
+    "fields": {
+      "topic": "тест 7",
+      "body": "тест 7\r\nтест 7\r\nтест 7\r\nтест 7\r\nтест 7",
+      "slug": "test-7",
+      "status": "launched",
+      "start_time": "2023-09-22T10:00:00Z",
+      "frequency": "monthly",
+      "owner": 7,
+      "client": [
+        3
+      ]
+    }
+  },
+  {
+    "model": "mailings.client",
+    "pk": 1,
+    "fields": {
+      "email": "atlanttok@yandex.ru",
+      "name": "Атлант",
+      "comment": "ред",
+      "owner": 5
+    }
+  },
+  {
+    "model": "mailings.client",
+    "pk": 2,
+    "fields": {
+      "email": "criptobushbtx@yandex.ru",
+      "name": "Севда Йилдыз",
+      "comment": "ред",
+      "owner": 6
+    }
+  },
+  {
+    "model": "mailings.client",
+    "pk": 3,
+    "fields": {
+      "email": "bushueva84@yandex.ru",
+      "name": "Дарья Бушуева",
+      "comment": "",
+      "owner": 7
+    }
+  },
+  {
+    "model": "mailings.mailinglogs",
+    "pk": 1,
+    "fields": {
+      "last_attempt": "2023-09-21T18:22:34.385Z",
+      "attempt_status": "Успешно",
+      "mail_server_response": true,
+      "mailing": 3,
+      "client": 1
+    }
+  },
+  {
+    "model": "mailings.mailinglogs",
+    "pk": 2,
+    "fields": {
+      "last_attempt": "2023-09-21T18:26:34.495Z",
+      "attempt_status": "Успешно",
+      "mail_server_response": true,
+      "mailing": 7,
+      "client": 2
+    }
+  },
+  {
+    "model": "mailings.mailinglogs",
+    "pk": 3,
+    "fields": {
+      "last_attempt": "2023-09-21T19:15:04.607Z",
+      "attempt_status": "Успешно",
+      "mail_server_response": true,
+      "mailing": 8,
+      "client": 3
+    }
+  },
+  {
+    "model": "mailings.mailinglogs",
+    "pk": 4,
+    "fields": {
+      "last_attempt": "2023-09-22T07:00:19.945Z",
+      "attempt_status": "Успешно",
+      "mail_server_response": true,
+      "mailing": 9,
+      "client": 3
+    }
+  }
+]

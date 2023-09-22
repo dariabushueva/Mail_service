@@ -1,9 +1,9 @@
 import random
 
 from django.contrib.auth.decorators import permission_required
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.http import Http404
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
@@ -40,7 +40,7 @@ class MailingListView(LoginRequiredMixin, ListView):
     model = Mailing
 
     def get_queryset(self):
-        if not self.request.user.is_staff:
+        if not self.request.user.groups.filter(name='Moderator') and not self.request.user.is_superuser:
             queryset = Mailing.objects.filter(owner=self.request.user).order_by('-pk')
         else:
             queryset = Mailing.objects.order_by('-pk')
@@ -118,7 +118,7 @@ class ClientListView(LoginRequiredMixin, ListView):
     model = Client
 
     def get_queryset(self):
-        if not self.request.user.is_staff:
+        if not self.request.user.groups.filter(name='Moderator') and not self.request.user.is_superuser:
             queryset = Client.objects.filter(owner=self.request.user)
         else:
             queryset = Client.objects.all()
@@ -158,6 +158,14 @@ class ClientDeleteView(LoginRequiredMixin, DeleteView):
 class MailingLogsListView(LoginRequiredMixin, ListView):
     """ Логи рассылки """
     model = MailingLogs
+
+    def get_queryset(self):
+        user_mailings = Mailing.objects.filter(owner=self.request.user)
+        if not self.request.user.groups.filter(name='Moderator') and not self.request.user.is_superuser:
+            user_logs = MailingLogs.objects.filter(mailing__in=user_mailings).order_by('-pk')
+        else:
+            user_logs = MailingLogs.objects.all().order_by('-pk')
+        return user_logs
 
 
 @permission_required("mailings.set_status")

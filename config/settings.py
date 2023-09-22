@@ -83,7 +83,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mail_service',
+        'NAME': config('PSQL_DB_NAME'),
         'USER': config('PSQL_USER'),
         'PASSWORD': config('PSQL_PASSWORD'),
     }

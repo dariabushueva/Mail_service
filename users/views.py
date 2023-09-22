@@ -55,7 +55,10 @@ class UserList(ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        queryset = queryset.exclude(Q(is_staff=True) | Q(is_superuser=True))
+        if self.request.user.is_superuser:
+            queryset = queryset.all()
+        else:
+            queryset = queryset.exclude(Q(is_staff=True) | Q(is_superuser=True))
         return queryset
 
 

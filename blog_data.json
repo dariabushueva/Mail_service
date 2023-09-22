@@ -1,0 +1,93 @@
+[
+  {
+    "model": "blog.blog",
+    "pk": 1,
+    "fields": {
+      "title": "Тестовая запись про рассылки",
+      "body": "Тестовая запись про рассылки",
+      "image_preview": "blog_media/5456465.png",
+      "creation_date": "2023-09-17",
+      "is_published": true,
+      "count_views": 3,
+      "slug": "testovaya-zapis-pro-rassyilki"
+    }
+  },
+  {
+    "model": "blog.blog",
+    "pk": 3,
+    "fields": {
+      "title": "Еще одна запись про рассылки",
+      "body": "Еще одна запись про рассылки\r\nЕще одна запись про рассылки\r\nЕще одна запись про рассылки",
+      "image_preview": "blog_media/block9.jpg",
+      "creation_date": "2023-09-17",
+      "is_published": true,
+      "count_views": 0,
+      "slug": "esche-odna-zapis-pro-rassyilki"
+    }
+  },
+  {
+    "model": "blog.blog",
+    "pk": 4,
+    "fields": {
+      "title": "Третья запись в блоге",
+      "body": "Третья запись в блоге\r\nТретья запись в блоге\r\nТретья запись в блоге",
+      "image_preview": "blog_media/d1f7ba8cd2db04e4680c9f8541537229.jpg",
+      "creation_date": "2023-09-17",
+      "is_published": true,
+      "count_views": 1,
+      "slug": "tretya-zapis-v-bloge"
+    }
+  },
+  {
+    "model": "blog.blog",
+    "pk": 5,
+    "fields": {
+      "title": "Запись в блоге номер четыре",
+      "body": "Запись в блоге номер четыре\r\nЗапись в блоге номер четыре\r\nЗапись в блоге номер четыре",
+      "image_preview": "blog_media/email-pazarlama-dijiatolye-scaled-1-2048x1639.jpg",
+      "creation_date": "2023-09-17",
+      "is_published": true,
+      "count_views": 5,
+      "slug": "zapis-v-bloge-nomer-chetyire"
+    }
+  },
+  {
+    "model": "blog.blog",
+    "pk": 6,
+    "fields": {
+      "title": "Пятая запись про рассылки",
+      "body": "Пятая запись про рассылки\r\nПятая запись про рассылки\r\nПятая запись про рассылки\r\nПятая запись про рассылки",
+      "image_preview": "blog_media/scale_1200.webp",
+      "creation_date": "2023-09-17",
+      "is_published": true,
+      "count_views": 6,
+      "slug": "pyataya-zapis-pro-rassyilki"
+    }
+  },
+  {
+    "model": "blog.blog",
+    "pk": 7,
+    "fields": {
+      "title": "Последняя тестовая запись",
+      "body": "Последняя тестовая запись\r\nПоследняя тестовая запись\r\nПоследняя тестовая запись\r\nПоследняя тестовая запись\r\nПоследняя тестовая запись",
+      "image_preview": "blog_media/how-to-launch-your-internet-entrepreneurss.jpeg",
+      "creation_date": "2023-09-17",
+      "is_published": true,
+      "count_views": 7,
+      "slug": "poslednyaya-testovaya-zapis"
+    }
+  },
+  {
+    "model": "blog.blog",
+    "pk": 8,
+    "fields": {
+      "title": "Запись для теста permission",
+      "body": "Запись для теста permission\r\nЗапись для теста permission\r\nЗапись для теста permission\r\nЗапись для теста permission\r\nЗапись для теста permission\r\nЗапись для теста permission",
+      "image_preview": "blog_media/i.webp",
+      "creation_date": "2023-09-18",
+      "is_published": true,
+      "count_views": 2,
+      "slug": "zapis-dlya-testa-permission"
+    }
+  }
+]
