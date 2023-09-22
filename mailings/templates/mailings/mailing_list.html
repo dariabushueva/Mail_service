@@ -1,0 +1,63 @@
+{% extends 'mailings/base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 mb-3 mb-sm-0">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Создать рассылку</h4>
+                    <p class="card-text">Быстрый и удобный способ создать e-mail рассылку</p>
+                    <a href="{% url 'mailings:mailing_create' %}" class="btn btn-outline-warning btn-lg">+</a>
+                    <a href="{% url 'mailings:logs_list' %}" class="btn btn-outline-warning btn-lg">Статистика</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Добавить клиента</h4>
+                    <p class="card-text">Простой способ добавлять и управлять контактами</p>
+                    <a href="{% url 'mailings:client_create' %}" class="btn btn-outline-success btn-lg">+</a>
+                    <a href="{% url 'mailings:client_list' %}" class="btn btn-outline-success btn-lg">Все</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-header">Последние рассылки</h4>
+                    <table class="table mt-5">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Тема</th>
+                            <th scope="col">Статус</th>
+                            <th scope="col">Время начала</th>
+                        </tr>
+                        </thead>
+                        <tbody class="table-group-divider">
+                        {% for object in object_list %}
+                        <tr>
+                            <th scope="row">{{ object.pk }}</th>
+                            <td>
+                                <a class="nav-link active" href="{% url 'mailings:mailing_detail' object.slug %}">{{ object.topic }}</a>
+                            </td>
+                            <td>{{ object.status }}</td>
+                            <td>{{ object.start_time }}</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,86 @@
+[
+  {
+    "model": "users.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$d798KlxPl0r5RMlPIvfP2T$Q00UraZ7BrSK8n+TKWanbrangdFjKLKgyARNI+45Ii8=",
+      "last_login": "2023-09-22T07:06:15.149Z",
+      "is_superuser": true,
+      "is_staff": true,
+      "date_joined": "2023-09-12T17:44:01.417Z",
+      "email": "admin@admin.ru",
+      "phone": null,
+      "first_name": "Admin",
+      "last_name": null,
+      "avatar": "",
+      "is_active": true,
+      "verification_key": null,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 5,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$B3PHeK8GsAy7fjjKfAqRWD$ejbBbko2gzgyK9sY07qDtSf/qxC+zlCAlLjp+SHqlJ0=",
+      "last_login": "2023-09-22T07:01:12.625Z",
+      "is_superuser": false,
+      "is_staff": true,
+      "date_joined": "2023-09-12T19:07:31Z",
+      "email": "bushueva84@yandex.ru",
+      "phone": null,
+      "first_name": null,
+      "last_name": null,
+      "avatar": "",
+      "is_active": true,
+      "verification_key": null,
+      "groups": [
+        1
+      ],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 6,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$cfpvejrHKsx5a7ITJULizd$cvGmts7XfsrXkxnNClGv4GDdpj1egQMuHFPLfoiSXjc=",
+      "last_login": "2023-09-22T07:05:34.095Z",
+      "is_superuser": false,
+      "is_staff": true,
+      "date_joined": "2023-09-14T15:29:08Z",
+      "email": "atlanttok@yandex.ru",
+      "phone": "88128881122",
+      "first_name": "Атлант",
+      "last_name": "Ток",
+      "avatar": "",
+      "is_active": true,
+      "verification_key": null,
+      "groups": [
+        2
+      ],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 7,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$xn4X3OpsIF8uAG1Y32DoLe$bMqG7CStjPlOb2O1li+1vXf6aOiLbTh92FkVZtM4tgQ=",
+      "last_login": "2023-09-21T19:12:57.842Z",
+      "is_superuser": false,
+      "is_staff": false,
+      "date_joined": "2023-09-16T09:54:21Z",
+      "email": "wcxto@yandex.ru",
+      "phone": null,
+      "first_name": null,
+      "last_name": null,
+      "avatar": "",
+      "is_active": true,
+      "verification_key": null,
+      "groups": [],
+      "user_permissions": []
+    }
+  }
+]
